@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InheritDevs — Software empresarial en Odoo e IA</title>
+<meta name="description" content="InheritDevs: implementaciones de Odoo 19, módulos a medida, integraciones, facturación electrónica DIAN e inteligencia artificial aplicada para empresas en Colombia.">
+<meta name="theme-color" content="#070B18">
+<meta property="og:title" content="InheritDevs — Software empresarial en Odoo e IA">
+<meta property="og:description" content="Implementaciones de Odoo 19, módulos a medida, integraciones, facturación electrónica e IA aplicada.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chencho2323.github.io/portafolio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2303A8FA'/><text x='50' y='68' font-size='54' font-family='sans-serif' font-weight='bold' fill='%23fff' text-anchor='middle'>iD</text></svg>">
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">iD</span>
+      <span>InheritDevs</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#opensource">Código abierto</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+      </ul>
+    </nav>
+
+    <a href="https://wa.me/573164925290?text=Hola%20InheritDevs%2C%20quiero%20informaci%C3%B3n%20sobre%20Odoo" class="nav-cta" target="_blank" rel="noopener">Agendar demo</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Odoo 19 · Colombia</span>
+          <h1>Software empresarial que <span class="grad-text">sí trabaja</span></h1>
+          <p class="hero-sub">
+            Construimos implementaciones de Odoo, módulos a medida, integraciones,
+            facturación electrónica e inteligencia artificial para empresas que
+            necesitan tecnología que no se queda en el PPT.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Conversemos</a>
+            <a href="#portafolio" class="btn btn-ghost">Ver lo que construimos</a>
+          </div>
+
+          <div class="hero-meta">
+            <span><i class="dot"></i> 12000+ horas de desarrollo</span>
+            <span><i class="dot"></i> 40+ proyectos entregados</span>
+            <span><i class="dot"></i> 24/7 soporte y monitoreo</span>
+          </div>
+        </div>
+
+        <div class="code-card">
+          <div class="code-bar">
+            <i></i><i></i><i></i>
+            <span>modulo_ia.py</span>
+          </div>
+<pre class="code-body"><code><span class="tk-cm"># Odoo 19 · asistente con IA sobre WhatsApp</span>
+<span class="tk-key">from</span> odoo <span class="tk-key">import</span> api, models
+<span class="tk-key">from</span> odoo.exceptions <span class="tk-key">import</span> UserError
+
+<span class="tk-key">class</span> <span class="tk-fn">AsistenteIA</span>(models.Model):
+    _name = <span class="tk-str">"herencia.asistente.ia"</span>
+    _inherit = [<span class="tk-str">"mail.thread"</span>]
+
+    <span class="tk-cm"># UBL 2.1 validado ante la DIAN</span>
+    <span class="tk-fn">def</span> <span class="tk-var">generar_factura</span>(self):
+        <span class="tk-key">for</span> cita <span class="tk-key">in</span> self:
+            factura = self.env[<span class="tk-str">"account.move"</span>].create({
+                <span class="tk-str">"move_type"</span>: <span class="tk-str">"out_invoice"</span>,
+                <span class="tk-str">"partner_id"</span>: cita.cliente_id.id,
+                <span class="tk-str">"x_cufe"</span>: self.env[<span class="tk-str">"l10n_co_edi_ext"</span>].<span class="tk-fn">validar_dian</span>(cita),
+            })
+            <span class="tk-var">self.env</span>[<span class="tk-str">"mail.message"</span>].<span class="tk-fn">create</span>({
+                <span class="tk-str">"body"</span>: <span class="tk-str">f"Factura {factura.name} lista para enviar"</span>,
+            })
+        <span class="tk-var">return</span> <span class="tk-var">True</span>
+
+    <span class="tk-cm"># IA conversacional en tiempo real</span>
+    <span class="tk-fn">def</span> <span class="tk-var">responder</span>(self, mensaje):
+        <span class="tk-var">return</span> self.env[<span class="tk-str">"inherit.inherit.mcp"</span>].<span class="tk-fn">consultar</span>(mensaje)
+<span class="cursor"></span></code></pre>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric reveal">
+          <div class="metric-value">40+</div>
+          <div class="metric-label">Proyectos entregados</div>
+        </div>
+        <div class="metric reveal">
+          <div class="metric-value">25+</div>
+          <div class="metric-label">Módulos Odoo propios</div>
+        </div>
+        <div class="metric reveal">
+          <div class="metric-value">30+</div>
+          <div class="metric-label">Clientes activos</div>
+        </div>
+        <div class="metric reveal">
+          <div class="metric-value">99.9%</div>
+          <div class="metric-label">Uptime en producción</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICIOS ================= -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <span class="eyebrow">Servicios</span>
+      <h2 class="section-title">Lo que hacemos, en producción</h2>
+      <p class="section-lead">
+        Seis líneas de negocio con entregables verificables. Cada proyecto empieza
+        entendiendo tu operación, no la herramienta.
+      </p>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+            </svg>
+          </div>
+          <h3>Implementación de Odoo</h3>
+          <p>Análisis, configuración, migración y puesta en marcha de Odoo Community o Enterprise para tu operación.</p>
+          <div class="chips">
+            <span class="chip chip-accent">ERP</span>
+            <span class="chip chip-accent">CRM</span>
+            <span class="chip">Migración</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3>Módulos a medida</h3>
+          <p>Desarrollo de módulos custom en Python, OWL y QWeb para los procesos que Odoo de fábrica no cubre.</p>
+          <div class="chips">
+            <span class="chip chip-accent">Python</span>
+            <span class="chip chip-accent">OWL</span>
+            <span class="chip">QWeb</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+              <path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6"/>
+            </svg>
+          </div>
+          <h3>eCommerce y B2B</h3>
+          <p>Tiendas y portales de cliente sobre Odoo con catálogos, precios por compañía y pagos en línea.</p>
+          <div class="chips">
+            <span class="chip chip-accent">/shop</span>
+            <span class="chip chip-accent">B2B</span>
+            <span class="chip">Pagos</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/>
+              <path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>
+            </svg>
+          </div>
+          <h3>Integraciones</h3>
+          <p>Conectores con marketplaces de domicilios, pasarelas de pago, mensajería y cualquier sistema externo.</p>
+          <div class="chips">
+            <span class="chip chip-accent">Rappi</span>
+            <span class="chip chip-accent">Glovo</span>
+            <span class="chip chip-accent">Wompi</span>
+            <span class="chip">Webhooks</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 2v6h6M9 15h6M9 11h3"/>
+            </svg>
+          </div>
+          <h3>Facturación electrónica</h3>
+          <p>Emisión de facturas y notas crédito electrónicas ante la DIAN con XML validado y estado visible en Odoo.</p>
+          <div class="chips">
+            <span class="chip chip-accent">DIAN</span>
+            <span class="chip chip-accent">XML</span>
+            <span class="chip">l10n_co</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="6" width="16" height="12" rx="3"/>
+              <path d="M9 12h.01M12 12h.01M15 12h.01M8 15h8"/>
+            </svg>
+          </div>
+          <h3>IA y automatización</h3>
+          <p>Asistentes sobre WhatsApp, agentes y gobernanza de IA corporativa con Odoo MCP y LLMs.</p>
+          <div class="chips">
+            <span class="chip chip-accent">IA</span>
+            <span class="chip chip-accent">MCP</span>
+            <span class="chip chip-accent">WhatsApp</span>
+            <span class="chip">AI</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PORTAFOLIO ================= -->
+  <section class="section" id="portafolio">
+    <div class="container">
+      <span class="eyebrow">Portafolio</span>
+      <h2 class="section-title">Lo que hemos construido</h2>
+      <p class="section-lead">
+        Módulos propios en producción. Cada uno resuelve una fricción real de negocio
+        y vive dentro de Odoo, no al lado.
+      </p>
+
+      <div class="work">
+        <article class="work-item reveal">
+          <div class="work-num">01</div>
+          <div>
+            <h3>Facturación electrónica</h3>
+            <div class="work-module">l10n_co_edi_ext</div>
+            <p>Extensión de localización colombiana para emisión, validación y estado de facturas electrónicas ante la DIAN.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">DIAN</span>
+            <span class="chip">XML</span>
+            <span class="chip">E-Invoice</span>
+          </div>
+        </article>
+
+        <article class="work-item reveal">
+          <div class="work-num">02</div>
+          <div>
+            <h3>Conectores de delivery</h3>
+            <div class="work-module">connector_delivery</div>
+            <p>Sincronización bidireccional de pedidos y estados entre Odoo y plataformas de domicilios como Rappi y Glovo.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">Rappi</span>
+            <span class="chip">Glovo</span>
+            <span class="chip">API</span>
+          </div>
+        </article>
+
+        <article class="work-item reveal">
+          <div class="work-num">03</div>
+          <div>
+            <h3>Pasarela de pagos</h3>
+            <div class="work-module">payment_wompi</div>
+            <p>Pagos en línea para Colombia con Wompi integrados al flujo de ventas y la tienda Odoo.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">Wompi</span>
+            <span class="chip">PSP</span>
+            <span class="chip">Tienda</span>
+          </div>
+        </article>
+
+        <article class="work-item reveal">
+          <div class="work-num">04</div>
+          <div>
+            <h3>WhatsApp con IA</h3>
+            <div class="work-module">l10n_co_whatsapp_ai</div>
+            <p>Atención y operación vía WhatsApp con modelos de lenguaje conectados a datos de Odoo.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">WhatsApp</span>
+            <span class="chip">LLM</span>
+            <span class="chip">Automatización</span>
+          </div>
+        </article>
+
+        <article class="work-item reveal">
+          <div class="work-num">05</div>
+          <div>
+            <h3>Odoo MCP</h3>
+            <div class="work-module">odoo_mcp</div>
+            <p>Servidor Model Context Protocol que expone Odoo a agentes de IA: consultas, órdenes y reportes.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">MCP</span>
+            <span class="chip">IA</span>
+            <span class="chip">Agentes</span>
+          </div>
+        </article>
+
+        <article class="work-item reveal">
+          <div class="work-num">06</div>
+          <div>
+            <h3>Gobernanza de IA</h3>
+            <div class="work-module">inheritdevs_ai_governance</div>
+            <p>Marco de control y alineamiento para el uso responsable de IA dentro de la empresa.</p>
+            <span class="work-status"><i class="dot"></i> Producción</span>
+          </div>
+          <div class="chips">
+            <span class="chip">IA</span>
+            <span class="chip">Gobernanza</span>
+            <span class="chip">Seguridad</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STACK ================= -->
+  <section class="section" id="stack">
+    <div class="container">
+      <span class="eyebrow">Stack</span>
+      <h2 class="section-title">Tecnologías que usamos a diario</h2>
+      <p class="section-lead">
+        Las mismas con las que corremos producción y soporte, no las de una
+        presentación de ventas.
+      </p>
+
+      <div class="stack-grid">
+        <div class="stack-col reveal">
+          <h4>ERP y backend</h4>
+          <ul>
+            <li>Odoo 19</li><li>Python</li><li>PostgreSQL</li>
+            <li>OWL</li><li>QWeb</li>
+          </ul>
+        </div>
+        <div class="stack-col reveal">
+          <h4>Interfaz</h4>
+          <ul>
+            <li>JavaScript</li><li>TypeScript</li><li>Next.js</li>
+            <li>Django REST</li><li>JWT</li>
+          </ul>
+        </div>
+        <div class="stack-col reveal">
+          <h4>Infraestructura</h4>
+          <ul>
+            <li>Docker</li><li>Docker Compose</li><li>Git</li>
+            <li>CI/CD</li><li>Jenkins</li>
+          </ul>
+        </div>
+        <div class="stack-col reveal">
+          <h4>IA e integraciones</h4>
+          <ul>
+            <li>MCP</li><li>LLMs</li><li>REST APIs</li>
+            <li>JSON-RPC</li><li>WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CÓDIGO ABIERTO ================= -->
+  <section class="section" id="opensource">
+    <div class="container">
+      <span class="eyebrow">Código abierto</span>
+      <h2 class="section-title">El trabajo también vive en GitHub</h2>
+      <p class="section-lead">
+        No todo el software de un proveedor es código cerrado. Publicamos lo que
+        puede enseñar algo: arquitectura, pruebas y herramientas.
+      </p>
+
+      <div class="gh-grid">
+        <article class="gh-card reveal">
+          <div class="gh-head">
+            <span class="gh-name">appointment-management-system</span>
+            <span class="gh-badge">Público</span>
+          </div>
+          <p>Sistema full-stack de gestión de citas de entrega: Django REST + JWT + drf-spectacular, Next.js y PostgreSQL, con CI en GitHub Actions.</p>
+          <div class="gh-foot">
+            <span>TypeScript · Python</span>
+            <a class="gh-link" href="https://github.com/Chencho2323/appointment-management-system" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+        </article>
+
+        <article class="gh-card reveal">
+          <div class="gh-head">
+            <span class="gh-name">integracion-continua</span>
+            <span class="gh-badge">Público</span>
+          </div>
+          <p>API Node.js + PostgreSQL en contenedores: arquitectura de integración continua con Docker, Docker Compose y pipeline Jenkins.</p>
+          <div class="gh-foot">
+            <span>JavaScript · Docker</span>
+            <a class="gh-link" href="https://github.com/Chencho2323/integracion-continua" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+        </article>
+
+        <article class="gh-card reveal">
+          <div class="gh-head">
+            <span class="gh-name">agenda-citas-ia</span>
+            <span class="gh-badge">En desarrollo</span>
+          </div>
+          <p>Asistente de agenda que interpreta lenguaje natural y administra disponibilidad y citas por WhatsApp. Node.js 24, SQLite nativo y pruebas con <code>node --test</code>.</p>
+          <div class="gh-foot">
+            <span>Node.js · SQLite</span>
+            <span>Privado</span>
+          </div>
+        </article>
+
+        <article class="gh-card reveal">
+          <div class="gh-head">
+            <span class="gh-name">odoo-addons-colombia</span>
+            <span class="gh-badge">En desarrollo</span>
+          </div>
+          <p>Módulos personalizados para Odoo 19 en Colombia: localización fiscal DIAN, nómina, temas y conectores.</p>
+          <div class="gh-foot">
+            <span>Python · Odoo</span>
+            <span>Privado</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="gh-note">
+        Los repositorios privados se abren bajo acuerdo de confidencialidad. Si
+        quieres ver el código de un módulo o evaluar una integración, conversamos.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PROCESO ================= -->
+  <section class="section" id="proceso">
+    <div class="container">
+      <span class="eyebrow">Proceso</span>
+      <h2 class="section-title">Cómo trabajamos</h2>
+      <p class="section-lead">
+        Entregas incrementales, presupuestos claros y comunicación directa. Tu
+        negocio avanza mientras construimos.
+      </p>
+
+      <div class="steps">
+        <div class="step reveal">
+          <h4>Entender</h4>
+          <p>Levantamos el proceso de negocio antes de elegir la herramienta. Lo que no aporta, queda fuera.</p>
+        </div>
+        <div class="step reveal">
+          <h4>Dimensionar</h4>
+          <p>Separamos lo conocido de lo incierto y damos rangos, no cifras falsamente exactas.</p>
+        </div>
+        <div class="step reveal">
+          <h4>Construir</h4>
+          <p>Trabajo por fases, con entregables verificables, documentación y pruebas automatizadas.</p>
+        </div>
+        <div class="step reveal">
+          <h4>Sostener</h4>
+          <p>Registro de incidentes, diagnóstico con evidencia y soporte 24/7 con monitoreo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <span class="eyebrow">Hablemos</span>
+        <h2>¿Listo para modernizar tu operación?</h2>
+        <p>
+          Cuéntanos tu proceso y armamos la mejor solución sobre Odoo. Empezamos
+          por entender el negocio, no por vender una licencia.
+        </p>
+        <div class="cta-actions">
+          <a href="https://wa.me/573164925290?text=Hola%20InheritDevs%2C%20quiero%20informaci%C3%B3n%20sobre%20Odoo" class="btn btn-primary" target="_blank" rel="noopener">
+            Escribir por WhatsApp
+          </a>
+          <a href="https://inheritdevs.com/contacto" class="btn btn-ghost" target="_blank" rel="noopener">
+            Formulario de contacto
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <a href="#top" class="brand" style="margin-bottom:10px">
+        <span class="brand-mark">iD</span>
+        <span>InheritDevs</span>
+      </a>
+      <div class="footer-copy">© 2026 InheritDevs · ERP · CRM · eCommerce · IA</div>
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="https://inheritdevs.com/" target="_blank" rel="noopener">Sitio</a></li>
+      <li><a href="https://inheritdevs.com/servicios" target="_blank" rel="noopener">Servicios</a></li>
+      <li><a href="https://inheritdevs.com/portafolio" target="_blank" rel="noopener">Portafolio</a></li>
+      <li><a href="https://www.linkedin.com/company/inheritdevs" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/Chencho2323" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://wa.me/573164925290" target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Nav: sombra al hacer scroll y menú móvil
+  (function () {
+    var nav = document.getElementById('nav');
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+
+    var onScroll = function () {
+      nav.classList.toggle('is-stuck', window.scrollY > 12);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    toggle.addEventListener('click', function () {
+      var open = links.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Reveal al entrar en pantalla
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  // Brillo que sigue al cursor en las tarjetas
+  (function () {
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
